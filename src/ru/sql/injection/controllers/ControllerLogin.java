@@ -38,17 +38,15 @@ public class ControllerLogin {
 
                 try {
                     main.db.init();
+                    main.stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../menu.fxml"))));
                 } catch (SQLException e) {
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText("Error sql execute");
                     alert.setContentText(e.getMessage());
                     alert.show();
                 }
-
-
-            main.stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../menu.fxml"))));
         } else {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Error connect");
             alert.setContentText("Your data is wrong, try again..");
             alert.show();

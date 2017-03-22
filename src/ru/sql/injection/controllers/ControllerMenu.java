@@ -1,6 +1,8 @@
 package ru.sql.injection.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -22,12 +24,32 @@ public class ControllerMenu {
     @FXML
     private TextArea testDebug;
     @FXML
+    private Label testLabel;
+    @FXML
     private void onTestLoggin(MouseEvent event) throws SQLException{
-        String sql = "SELECT Count(id) FROM SQLInjection.users WHERE name='"+testLogin.getText()+"' AND password = '"+testPassword.getText()+"'";
+        String sql = "SELECT Count(id) FROM SQLInjection.users WHERE name='"+testLogin.getText()+"' AND password = Password('"+testPassword.getText()+"')";
+
                 testDebug.setText(sql);
-        ResultSet rs = main.db.sendQuery(sql);
-        while(rs.next())
-        System.out.println(rs.getInt(1));
+        ResultSet rsCount = null;
+                try {
+                    rsCount = main.db.sendQuery(sql);
+                }catch (SQLException e){
+                    testDebug.setOpacity(1);
+                    testDebug.setText(e.getMessage());
+                }
+        while(rsCount.next()) {
+            if (rsCount.getInt(1)==1){
+                ResultSet rsGetInfo = main.db.sendQuery("SELECT mobile FROM SQLInjection.users WHERE name='"+testLogin.getText()+"'");
+                while (rsGetInfo.next()) testLabel.setText("Hello, "+testLogin.getText()+". Your phone: "+rsGetInfo.getString(1));
+            }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Do not correct data entry");
+                alert.setContentText("Try for a new record to your data");
+                alert.show();
+            }
+
+        }
+
     }
 
 }

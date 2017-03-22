@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.lang.Object;
+import java.text.DecimalFormat;
 import java.util.Random;
 
 /**
@@ -34,9 +35,10 @@ public class DataBase {
     public void init() throws SQLException {
         sendQuery("DROP DATABASE IF EXISTS SQLInjection");
         sendQuery("CREATE DATABASE SQLInjection");
-        sendQuery("CREATE TABLE SQLInjection.users(id INTEGER PRIMARY KEY AUTO_INCREMENT,name VARCHAR(100),password VARCHAR(200))");
+        sendQuery("CREATE TABLE SQLInjection.users(id INTEGER PRIMARY KEY AUTO_INCREMENT,name VARCHAR(100),password VARCHAR(200),mobile VARCHAR(200))");
         for (int i = 0; i < 100; i++) {
-            sendQuery("INSERT INTO SQLInjection.users (name,password) VALUES('" + generateRandomWords() + "','" + generateRandomWords()+"')");
+            String testName = generateRandomWords();
+            sendQuery("INSERT INTO SQLInjection.users (name,password,mobile) VALUES('" + testName + "',PASSWORD('" + generateRandomWords()+"'),'"+generateRandomPhone()+"')");
         }
     }
 
@@ -56,5 +58,17 @@ public class DataBase {
             randomStrings = new String(word);
         }
         return randomStrings;
+    }
+
+    private String generateRandomPhone(){
+        Random rand = new Random();
+        int num1 = (rand.nextInt(7) + 1) * 100 + (rand.nextInt(8) * 10) + rand.nextInt(8);
+        int num2 = rand.nextInt(743);
+        int num3 = rand.nextInt(10000);
+
+        DecimalFormat df3 = new DecimalFormat("000"); // 3 zeros
+        DecimalFormat df4 = new DecimalFormat("0000"); // 4 zeros
+
+        return  df3.format(num1) + "-" + df3.format(num2) + "-" + df4.format(num3);
     }
 }
