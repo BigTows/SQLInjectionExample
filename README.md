@@ -1,6 +1,6 @@
 # SQLInjectionExample
-This simulation SQL Injection (Just for ~~fun обучение)
-Latest news: 
+This simulation SQL Injection (Just for ~~fun~~ обучение)
+>Latest news: 
 Update 0.5 Alpha [SQL Trainer Injection]:
  - Add AUTO generation table
  - Add Auth to DataBase (Now only MariaDB)
