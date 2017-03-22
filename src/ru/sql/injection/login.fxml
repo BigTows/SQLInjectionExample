@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.sql.injection.controllers.ControllerLogin">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="594.0" prefWidth="598.0">
+         <children>
+            <HBox alignment="CENTER" layoutX="15.0" layoutY="78.0" prefHeight="185.0" prefWidth="571.0" spacing="20.0" AnchorPane.bottomAnchor="135.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="78.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                     <children>
+                        <TextField fx:id="hostField" promptText="Host" text="localhost" />
+                        <TextField fx:id="dbnameField" prefHeight="27.0" prefWidth="91.0" promptText="DataBase name" />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="60.0" top="56.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <TextField fx:id="loginField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="100.0" promptText="Login" />
+                  <PasswordField fx:id="passwordField" prefHeight="27.0" prefWidth="100.0" promptText="Password" />
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="185.0" prefWidth="128.0" spacing="20.0">
+                     <children>
+                        <Button fx:id="logginButton" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="16.0" prefWidth="196.0" text="Enter" />
+                        <CheckBox fx:id="reCreate" mnemonicParsing="false" text="ReCreate" />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="42.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+         </children></AnchorPane>
+  </items>
+</SplitPane>
