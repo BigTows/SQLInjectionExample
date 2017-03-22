@@ -1,5 +1,5 @@
 # SQLInjectionExample
-This simulation SQL Injection (Just for ~~fun~~ обучение)
+This simulation SQL Injection (Just for ~~fun~~ training)
 >Latest news: 
 Update 0.5 Alpha [SQL Trainer Injection]:
  - Add AUTO generation table
