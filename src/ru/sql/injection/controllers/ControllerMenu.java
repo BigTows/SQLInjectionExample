@@ -1,10 +1,12 @@
 package ru.sql.injection.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import ru.sql.injection.main;
 
@@ -25,6 +27,9 @@ public class ControllerMenu {
     private TextArea testDebug;
     @FXML
     private Label testLabel;
+    @FXML
+    private TextField textPolis;
+
     @FXML
     private void onTestLoggin(MouseEvent event) throws SQLException{
         String sql = "SELECT Count(id) FROM SQLInjection.users WHERE name='"+testLogin.getText()+"' AND password = Password('"+testPassword.getText()+"')";
@@ -50,6 +55,10 @@ public class ControllerMenu {
 
         }
 
+    }
+    @FXML
+    private void onChange(KeyEvent event){
+        System.out.println(textPolis.getText());
     }
 
 }

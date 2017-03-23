@@ -1,5 +1,6 @@
 package ru.sql.injection.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -27,7 +28,6 @@ public class ControllerLogin {
     private Button logginButton;
     @FXML
     private CheckBox reCreate;
-
 
     @FXML
     private void onClick(MouseEvent event) throws Exception {
