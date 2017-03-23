@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.lang.Object;
 import java.text.DecimalFormat;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by bigtows on 21/03/2017.
@@ -36,9 +37,11 @@ public class DataBase {
         sendQuery("DROP DATABASE IF EXISTS SQLInjection");
         sendQuery("CREATE DATABASE SQLInjection");
         sendQuery("CREATE TABLE SQLInjection.users(id INTEGER PRIMARY KEY AUTO_INCREMENT,name VARCHAR(100),password VARCHAR(200),mobile VARCHAR(200))");
+        sendQuery("CREATE TABLE SQLInjection.polis(id INTEGER PRIMARY KEY ,name VARCHAR(100))");
         for (int i = 0; i < 100; i++) {
             String testName = generateRandomWords();
             sendQuery("INSERT INTO SQLInjection.users (name,password,mobile) VALUES('" + testName + "',PASSWORD('" + generateRandomWords()+"'),'"+generateRandomPhone()+"')");
+            sendQuery("INSERT INTO SQLInjection.polis (id,name) VALUES(" + (i+1001) + ",'" + generateRandomWords()+"')");
         }
     }
 
@@ -70,5 +73,9 @@ public class DataBase {
         DecimalFormat df4 = new DecimalFormat("0000"); // 4 zeros
 
         return  df3.format(num1) + "-" + df3.format(num2) + "-" + df4.format(num3);
+    }
+
+    private int generateRandomInt(int min,int max){
+        return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
 }
